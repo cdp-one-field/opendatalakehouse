@@ -33,19 +33,8 @@ The primary goal of this workflow is to build an ingestion data pipeline
 
 ![Screen_Shot_2022-09-19_at_8-16-44_PM.png](image/Screen_Shot_2022-09-19_at_8-16-44_PM.png)
 
-6. Enable controller services
-    1. Right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source```
-    2. Click ```Configure```
-    3. Now Click on ```Controller Services``` tab
-    4. Then click the ```enable``` icon
-    5. Now close the floating window
-
-![Screen_Shot_2022-09-19_at_8-50-18_PM.png](image/Screen_Shot_2022-09-19_at_8-50-18_PM.png)
-
-![Screen_Shot_2022-09-19_at_8-50-43_PM.png](image/Screen_Shot_2022-09-19_at_8-50-43_PM.png)
-
-5. Now, right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source``` again
-6. Click ```Start```
+6. Now, right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source```
+7. Click ```Start```
 
 In the background, the connector required to extract data out of our source system \(postgreSQL\) will be downloaded
 
@@ -54,18 +43,8 @@ In the background, the connector required to extract data out of our source syst
 In this step, you will continue from lab 1 to extract data from the source system \(postgresql database\) to the CDP One Object store's landing area. We will place the data under ```s3a://<cdp-object-store>/landing/airlines```
 
 1. Navigate back to the ```Build and Monitor data flows``` tile on CDP One console.
-2. Before starting the ETL/ELT workflow, you have to enable the ```Controller Settings```
-3. Right click on the processor group ```Step 1\) Load from source DB to CDP One Landing zone Configuration```
-    1. Click ```Configure```
-    2. Now Click on ```Controller Services``` tab
-    3. Then click the ```enable``` icon
-
-![Screen_Shot_2022-09-19_at_9-12-47_PM.png](image/Screen_Shot_2022-09-19_at_9-12-47_PM.png)
-
-![Screen_Shot_2022-09-19_at_9-14-02_PM.png](image/Screen_Shot_2022-09-19_at_9-14-02_PM.png)
-
-4. Now, right click on the processor group ```Step 1\) Load from source DB to CDP One Landing zone Configuration``` again
-2. Click ```Start```
+2. Now, right click on the processor group ```Step 1\) Load from source DB to CDP One Landing zone Configuration```
+3. Click ```Start```
 
 ![Screen_Shot_2022-09-19_at_9-23-27_PM.png](image/Screen_Shot_2022-09-19_at_9-23-27_PM.png)
 
