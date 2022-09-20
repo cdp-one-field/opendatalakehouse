@@ -12,4 +12,4 @@ This lab demonstrates ETL/ELT workflow to enrich the data to allow users to perf
 
 Once the ETL/ELT pipeline completes, the data will be loaded into the CDP Data warehouse for further analysis in 03\_analyze
 
-Note: Ignore any warnings and errors related to cannot find schema
+```Note: Ignore any warnings and errors related to cannot find schema```
