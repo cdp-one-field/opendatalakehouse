@@ -1,119 +1,72 @@
 # 01_ingest
 
-In this lab, we will build an end-to-end ingetion workflow using Cloudera Data flow. The primary goal of this workflow is to build a end\-to\-end automated ETL solution using data flow(nifi) to connect to the source external DB, export the table data, keep a copy of the data in AWS s3 bucket, use the csv data to create a dynamic schema, enrich the data and create hive tables for further analysis, visualization and data science. To achieve that goal, this project demonstrates creation of end\-to\-end ETL workflow for ingetion and enrichment of realtime data to allow users to perform analysis, visualize and create machine learning models.
+In this lab, we will build an end\-to\-end ingestion workflow using Cloudera Data flow.
 
-## Part 1:
+The primary goal of this workflow is to build an ingestion data pipeline
 
-Configuring the Nifi flow to execute ingestion workflow pre-requisites.
+- The source data exists on a postgresql database. There are 5 datasets that we need to collect and land it into the landing zone of Cloudera Data Platform
+    - Flights data
+    - Airports data
+    - Planes data
+    - Airlines data
+    - Passenger data
+- We connect to the source database and pull all 5 datasets and write the output to ```s3a://\<cdp\-private\-bucket\>/landing/airlines```
+- The landing data will be written down in a CSV format
 
-![cdpone_nifi.png](image/01_ingest/cdpone_nifi.png)
+## Lab 1: Data extraction prerequisites \(Install driver\)
 
-Step 1: Click on Build and Monitor Data flows with Nifi from the CDP One Console for creating the ingestion workflow
+1. On your CDP One console, click on ```INGEST``` filter
+2. Verify the flows pre\-loaded into your registry
+    1. Click on ```Version control data flows```
+    2. Three workflows should be preloaded into your registry
 
-![cdpone_nifi_registry.png](image/01_ingest/cdpone_nifi_registry.png)
+![Screen_Shot_2022-09-19_at_8-11-17_PM.png](image/Screen_Shot_2022-09-19_at_8-11-17_PM.png)
 
-Step 2: From Nifi GUI, click on Add Process Group
+![Screen_Shot_2022-09-19_at_8-14-01_PM.png](image/Screen_Shot_2022-09-19_at_8-14-01_PM.png)
 
-![processor_group.png](image/01_ingest/processor_group.png)
+3. Now click on ```Build and Monitor data flows```
+4. You should see all three processor groups imported for you from the registry
 
-Step 3: Then, upload the flow file definition from Nifi Schema Registry
-    Note: Select the Airline-Ingestion-Workflow-Pre-requisite flow with the latest version
+![Screen_Shot_2022-09-19_at_8-11-17_PM-1.png](image/Screen_Shot_2022-09-19_at_8-11-17_PM-1.png)
 
-![import_dataflow.png](image/01_ingest/import_dataflow.png)
+5. We will now run the pre\-requisite workflow to download the connectors to pull data from the external database \(postgresql\)
 
-Step 4: Below workflow downloads the JDBC Driver to the Nifi Instances
-    Note: But, before starting the flow, we need to modify and enable some parameters and controller services
+![Screen_Shot_2022-09-19_at_8-16-44_PM.png](image/Screen_Shot_2022-09-19_at_8-16-44_PM.png)
 
-![Download_connector_for_Database_source.png](image/01_ingest/Download_connector_for_Database_source.png)
+6. Enable controller services
+    1. Right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source```
+    2. Click ```Configure```
+    3. Now Click on ```Controller Services``` tab
+    4. Then click the ```enable``` icon
+    5. Now close the floating window
 
-		1. Enable Default NiFi SSL Context Service
-		2. Update the driver_location and url_to_download_jdbc variables for downloading the right database driver 
-			1. In this scenario flow is using /tmp/jdbc directory and considering postgres is the external database
-			2. By using this URL (https://jdbc.postgresql.org/download/postgresql-42.2.26.jre6.jar) to download the postgres jdbc driver
+![Screen_Shot_2022-09-19_at_8-50-18_PM.png](image/Screen_Shot_2022-09-19_at_8-50-18_PM.png)
 
-Step 5: Start the workflow and validate the driver in nifi instance by logging to the cdpone Edge node
+![Screen_Shot_2022-09-19_at_8-50-43_PM.png](image/Screen_Shot_2022-09-19_at_8-50-43_PM.png)
 
-![start_flow.png](image/01_ingest/start_flow.png)
+5. Now, right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source``` again
+6. Click ```Start```
 
-## Part 2:
+In the background, the connector required to extract data out of our source system \(postgreSQL\) will be downloaded
 
-Configuring the Nifi flow to execute Airline-Ingestion-Workflow-Stage1.
+## Lab 2: Data ingestion to landing zone
 
-![cdpone_nifi.png](image/01_ingest/cdpone_nifi.png)
+In this step, you will continue from lab 1 to extract data from the source system \(postgresql database\) to the CDP One Object store's landing area. We will place the data under ```s3a://<cdp-object-store>/landing/airlines```
 
-Step 1: From Nifi GUI, click on Add Process Group
+1. Navigate back to the ```Build and Monitor data flows``` tile on CDP One console.
+2. Before starting the ETL/ELT workflow, you have to enable the ```Controller Settings```
+3. Right click on the processor group ```Step 1\) Load from source DB to CDP One Landing zone Configuration```
+    1. Click ```Configure```
+    2. Now Click on ```Controller Services``` tab
+    3. Then click the ```enable``` icon
 
-![processor_group.png](image/01_ingest/processor_group.png)
+![Screen_Shot_2022-09-19_at_9-12-47_PM.png](image/Screen_Shot_2022-09-19_at_9-12-47_PM.png)
 
-Step 2: Then, upload the flow file definition from Nifi Schema Registry
-    Note: Select the Airline-Ingestion-Workflow-Stage1 flow with the latest version
+![Screen_Shot_2022-09-19_at_9-14-02_PM.png](image/Screen_Shot_2022-09-19_at_9-14-02_PM.png)
 
-![select_flow_version.png](image/01_ingest/select_flow_version.png)    
+4. Now, right click on the processor group ```Step 1\) Load from source DB to CDP One Landing zone Configuration``` again
+2. Click ```Start```
 
-Step 3: Below workflow connects the source external database and exports the tables in csv format to AWS S3 bucket
-    Note: But, before starting the flow, we need to modify and enable some parameters and controller services
+![Screen_Shot_2022-09-19_at_9-23-27_PM.png](image/Screen_Shot_2022-09-19_at_9-23-27_PM.png)
 
-![Load_from_source_DB_to_CDPOne_Landing_zone.png](image/01_ingest/Load_from_source_DB_to_CDPOne_Landing_zone.png)
-
-		1. Enable all the controller services shown in the below diagram
-![controller_versions.png](image/01_ingest/controller_versions.png)        
-		2. Validate and Modify the below parameters
-			1. update the existing source db_username, db_password, db_hostname, db_port
-
-![select_stage1_variables.png](image/01_ingest/select_stage1_variables.png)           
-
-			2. By using this URL (https://jdbc.postgresql.org/download/postgresql-42.2.26.jre6.jar) to download the postgres jdbc driver
-            3. update the AWS S3 bucket with right name - (landing-directory-path)
-            4. provide Cloudera cdpone tenant username and password ((cdp-username & cdp-password))
-
-Step 4: Before running the flow, validate the Database connection controller service
-    Note: This service will validate the DB connection by using the details from paramater context and DB User should have privileges to read and export the data
-
-![controller_versions.png](image/01_ingest/controller_versions.png)    
-
-Step 5: Start the workflow and validate the AWS S3 bucket for the database table data (s3a://cdponedemo-cdp-private-default-3hxxiqv/landing/airlines)
-
-![aws_s3_files_csv.png](image/01_ingest/aws_s3_files_csv.png)
-
-
-## Part 3:
-
-Configuring the Nifi flow to execute Airline-Ingestion-Workflow-Stage2.
-
-![cdpone_nifi.png](image/01_ingest/cdpone_nifi.png)
-
-Step 1: From Nifi GUI, click on Add Process Group
-
-![processor_group.png](image/01_ingest/processor_group.png)
-
-Step 2: Then, upload the flow file definition from Nifi Schema Registry
-    Note: Select the Airline-Ingestion-Workflow-Stage2 flow with the latest version
-
-![import_dataflow.png](image/01_ingest/import_dataflow.png)    
-
-Step 3: Below workflow connects with AWS s3 to fetch the table data(CSV), create the dynamic schema, convert table data to avro format, convert avro data to orc files by removing the null data, along with schema and create hive database and tables in hive
-
-![Data_Engineering_ETL/ELT.png](image/01_ingest/Data_Engineering_ETL/ELT.png)
-
-    Note: But, before starting the flow, we need to modify and enable some parameters and controller services
-		1. Enable all the controller services shown in the below diagram
-
-![stage2_controller_services.png](image/01_ingest/stage2_controller_services.png)               
-
-		2. Validate and Modify the below parameters
-
-![stage2_variables.png](image/01_ingest/stage2_variables.png)        
-
-			1. Update the existing hive connection uri (hive_connection_uri)
-			2. provide Cloudera cdpone tenant username and password (cdp-username & cdp-password)
-            3. update the AWS S3 bucket with right bucket name(s3-bucket-private)
-
-Step 4: Before running the flow, validate the Hive Database connection controller service
-	Note: This service will validate the DB connection by using the hive connection uri from paramater context
-Step 5: Start the workflow and validate Hive airlines database
-
-![aws_orc_files.png](image/01_ingest/aws_orc_files.png)
-
-![hive_datasets.png](image/01_ingest/hive_datasets.png)
-
-![hive_data.png](image/01_ingest/hive_data.png)
+In this section, we learnt how to extract data from a source system and land the data as files into the CDP Object Store.

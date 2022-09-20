@@ -1,5 +1,6 @@
 # 06_secure
 
+# NOTE: THIS SECTION MIGHT BE REMOVED. WAITING FOR FURTHER CONFIRMATION.
 
 ## Lab 1: Configure SQL permissions in ranger
 
