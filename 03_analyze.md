@@ -54,29 +54,25 @@ ORDER BY
 SELECT
 *
 FROM
-   `airlines`.unique_tickets a,
-   `airlines`.flights o,
-   `airlines`.flights d,
-   `airlines`.airports oa,
-   `airlines`.airports da 
+   `airlines`.unique_tickets a,
+   `airlines`.flights o,
+   `airlines`.flights d,
+   `airlines`.airports oa,
+   `airlines`.airports da 
 WHERE
-   a.leg1flightnum = o.flightnum
-   AND a.leg1uniquecarrier = o.uniquecarrier
-   AND a.leg1origin = o.origin
-   AND a.leg1dest = o.dest
-   AND a.leg1month = o.month
-   AND a.leg1dayofmonth = o.dayofmonth
-   AND a.leg1dayofweek = o.`dayofweek`
-   AND a.leg2flightnum = d.flightnum
-   AND a.leg2uniquecarrier = d.uniquecarrier
-   AND a.leg2origin = d.origin
-   AND a.leg2dest = d.dest
-   AND a.leg2month = d.month
-   AND a.leg2dayofmonth = d.dayofmonth
-   AND a.leg2dayofweek = d.`dayofweek`
-   AND d.origin = oa.iata
-   AND d.dest = da.iata
-   AND oa.country <> da.country ;
+   a.leg1flightnum = o.flightnum
+   AND a.leg1uniquecarrier = o.uniquecarrier
+   AND a.leg1origin = o.origin
+   AND a.leg1dest = o.dest
+   AND a.leg1month = o.month
+   AND a.leg1dayofmonth = o.dayofmonth
+   AND a.leg1dayofweek = o.`dayofweek`
+   AND a.leg2flightnum = d.flightnum
+   AND a.leg2month = d.month
+   AND a.leg2dayofmonth = d.dayofmonth
+   AND a.leg2dayofweek = d.`dayofweek`
+   AND d.origin = oa.iata
+   AND d.dest = da.iata;
 ```
 
 **Query 3:** Number of passengers on the airline that has long, planned layovers for an international flight
@@ -97,58 +93,44 @@ group by
 
 ```
 SELECT
-   a.leg1uniquecarrier as carrier,
-   count(a.leg1uniquecarrier) as passengers
+   a.leg1uniquecarrier as carrier,
+   count(a.leg1uniquecarrier) as passengers
 FROM
-   `airlines`.unique_tickets a,
-   `airlines`.flights o,
-   `airlines`.flights d
+   `airlines`.unique_tickets a,
+   `airlines`.flights o,
+   `airlines`.flights d
 where
-       a.leg1flightnum = o.flightnum
-   AND a.leg1uniquecarrier = o.uniquecarrier
-   AND a.leg1origin = o.origin
-   AND a.leg1dest = o.dest
-   AND a.leg1month = o.month
-   AND a.leg1dayofmonth = o.dayofmonth
-   AND a.leg1dayofweek = o.`dayofweek`
-   AND a.leg2flightnum = d.flightnum
-   AND a.leg2uniquecarrier = d.uniquecarrier
-   AND a.leg2origin = d.origin
-   AND a.leg2dest = d.dest
-   AND a.leg2month = d.month
-   AND a.leg2dayofmonth = d.dayofmonth
-   AND a.leg2dayofweek = d.`dayofweek`
-   AND o.depdelay > 60
+       a.leg1flightnum = o.flightnum
+   AND a.leg1uniquecarrier = o.uniquecarrier
+   AND a.leg1origin = o.origin
+   AND a.leg1dest = o.dest
+   AND a.leg1month = o.month
+   AND a.leg1dayofmonth = o.dayofmonth
+   AND a.leg1dayofweek = o.`dayofweek`
+   AND a.leg2uniquecarrier = d.uniquecarrier
+   AND a.leg2origin = d.origin
 group by
-   a.leg1uniquecarrier;
+   a.leg1uniquecarrier;
 ```
 
 **Query 5:** Number of passengers on airlines that have elongated layovers for an international flight caused by missed connection
 
 ```
 SELECT
-   a.leg1uniquecarrier as carrier,
-   count(a.leg1uniquecarrier) as passengers
+   a.leg1uniquecarrier as carrier,
+   count(a.leg1uniquecarrier) as passengers
 FROM
-   `airlines`.unique_tickets a,
-   `airlines`.flights o,
-   `airlines`.flights d
+   `airlines`.unique_tickets a,
+   `airlines`.flights o,
+   `airlines`.flights d
 where
-       a.leg1flightnum = o.flightnum
-   AND a.leg1uniquecarrier = o.uniquecarrier
-   AND a.leg1origin = o.origin
-   AND a.leg1dest = o.dest
-   AND a.leg1month = o.month
-   AND a.leg1dayofmonth = o.dayofmonth
-   AND a.leg1dayofweek = o.`dayofweek`
-   AND a.leg2flightnum = d.flightnum
-   AND a.leg2uniquecarrier = d.uniquecarrier
-   AND a.leg2origin = d.origin
-   AND a.leg2dest = d.dest
-   AND a.leg2month = d.month
-   AND a.leg2dayofmonth = d.dayofmonth
-   AND a.leg2dayofweek = d.`dayofweek`
-   AND d.deptime-o.arrtime < o.arrdelay-45
+       a.leg1flightnum = o.flightnum
+    AND a.leg1uniquecarrier = o.uniquecarrier
+    AND a.leg1origin = o.origin
+    AND a.leg1dest = o.dest
+    AND a.leg1month = o.month
+    AND a.leg1dayofmonth = o.dayofmonth
+    AND a.leg1dayofweek = o.`dayofweek`
 group by
-   a.leg1uniquecarrier;
+   a.leg1uniquecarrier;
 ```
