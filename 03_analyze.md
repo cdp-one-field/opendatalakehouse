@@ -129,7 +129,6 @@ group by
 SELECT
    a.leg1uniquecarrier as carrier,
    count(a.leg1uniquecarrier) as passengers
-   o.arrdelay as delay
 FROM
    `airlines`.unique_tickets a,
    `airlines`.flights o,
