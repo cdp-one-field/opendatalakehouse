@@ -123,4 +123,6 @@ For this use\-case, we will let Cloudera Data Visualization recommend a chart ty
 
 ![Screen_Shot_2022-09-01_at_2-14-09_PM.png](image/Screen_Shot_2022-09-01_at_2-14-09_PM.png)
 
+Click `Save` to save the dashboard.
+
 As a nextstep, you can try creating a visual application based on the dashboard we just built and showcase how a business user dashboard could look like. The documentation is [here](https://docs.cloudera.com/data-visualization/7/howto-apps/topics/viz-create-app.html)
