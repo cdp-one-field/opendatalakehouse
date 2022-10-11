@@ -34,14 +34,14 @@ The primary goal of this workflow is to build an ingestion data pipeline
 
 ![Screen_Shot_2022-09-19_at_8-16-44_PM.png](image/Screen_Shot_2022-09-19_at_8-16-44_PM.png)
 
-2. Now, right click on the processor group ```\(1. Pre\-requisite\) Download connector for Database source```
+2. Now, right click on the processor group ```(1. Pre-requisite) Download connector for Database source```
 3. Click ```Start```
 
 In the background, the connector required to extract data out of our source system (postgreSQL) will be downloaded
 
 ## Lab 2: Data ingestion to landing zone
 
-In this step, you will continue from lab 1 to extract data from the source system (postgresql database) to the CDP One Object store's landing area. We will place the data under ```s3a://<cdp-object-store>/landing/airlines```
+In this step, you will continue from lab 1 to extract data from the source system (postgresql database) to the CDP One Object store's landing area. We will place the data under CDP One's Object Store.
 
 1. Navigate back to the ```Build and Monitor data flows``` tile on CDP One console.
 2. Now, right click on the processor group ```Step 1) Load from source DB to CDP One Landing zone Configuration```

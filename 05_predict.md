@@ -15,13 +15,13 @@ Note the environment name as it will be used as one of the inputs while we creat
 
 ![Screen_Shot_2022-09-01_at_4-10-15_PM.png](image/Screen_Shot_2022-09-01_at_4-10-15_PM.png)
 
-1. Once complete, click on the project we just created 
+1. Once complete, click on the project we just created
 2. CML will now gives a series of Environment Variables for the user to fill in. Fill as below:
-    1. STORAGE\_MODE as external
-    2. SPARK\_CONNECTION\_NAME with the Environment field we collected above.
-    3. DW\_DATABASE as airlines
-    4. DW\_TABLE as mlflights
-    5. USE\_PREBUILT\_MODEL as yes
+    1. `STORAGE_MODE` as external
+    2. `SPARK_CONNECTION_NAME` with the Environment field we collected above.
+    3. `DW_DATABASE` as `airlines`
+    4. `DW_TABLE` as `mlflights`
+    5. `USE_PREBUILT_MODEL` as `yes`
 3. Leave the rest of the fields to be default.
 4. Click Launch Project
 
@@ -31,25 +31,25 @@ Note the environment name as it will be used as one of the inputs while we creat
 
 Cloudera Machine Learning will automatically execute the following 10 steps:
 
-Step 1: Job to install dependencies
+`Step 1:` Job to install dependencies
 
-Step 2: Running install dependencies job
+`Step 2:` Running install dependencies job
 
-Step 3: Job to process raw data files
+`Step 3:` Job to process raw data files
 
-Step 4: Running job to process raw data files
+`Step 4:` Running job to process raw data files
 
-Step 5: Job to train model
+`Step 5:` Job to train model
 
-Step 6: Run model training job
+`Step 6:` Run model training job
 
-Step 7: Create the flight delay prediction model api endpoint
+`Step 7:` Create the flight delay prediction model api endpoint
 
-Step 8: Build model
+`Step 8:` Build model
 
-Step 9: Deploy model
+`Step 9:` Deploy model
 
-Step 10: Start Application
+`Step 10:` Start Application
 
 You can follow the step being executed by clicking on the `view details` page to see the progress and what the prototype execution looks like in the background.
 
@@ -59,11 +59,11 @@ All the steps above should be successful before proceeding to the next steps. It
 
 Exploring the deployed model
 
-1. Go to the Projects page and click on the project we created now.
-2. One of the steps that AMP executed was productionalise the model and make accessible via a REST API.
+1. Go to the `Projects` page and click on the project we created now.
+2. One of the steps that AMP executed was productionalize the model and make accessible via a REST API.
 3. Click on the Models page and then the model that was deployed.
 4. We will now test the real time scoring of the model that was just deployed.
-5. The "Test Model" section contains sample input populated automatically. You can also pass your own sample Inputs in the format given. Then click Test
+5. The `Test Model` section contains sample input populated automatically. You can also pass your own sample Inputs in the format given. Then click Test
 6. The model gets called with the feature we just sent through and a prediction result is given back. Value of  1 predicts that the flight will be delayed, 0 means the flight will not be delayed
 
 ![Screen_Shot_2022-09-01_at_5-17-16_PM.png](image/Screen_Shot_2022-09-01_at_5-17-16_PM.png)
@@ -72,8 +72,8 @@ Exploring the deployed model
 
 The AMP deployed a visual dashboard to expose the results from the Machine Learning pipeline for the business users. In this lab, we will access the Analytical Application
 
-1. While on the project we created in the previous labs, click on Applications
-2. There will be an app called "Application to serve flight prediction front end app". Click the link.
+1. While on the project we created in the previous labs, click on `Applications`
+2. There will be an app called `Application to serve flight prediction front end app`. Click the link.
 3. This will take you to a visual dashboard, where you can pass various inputs to the model and get a prediction back. You can use your own datapoints as inputs to this app.
 
 ![Screen_Shot_2022-09-01_at_5-16-41_PM.png](image/Screen_Shot_2022-09-01_at_5-16-41_PM.png)

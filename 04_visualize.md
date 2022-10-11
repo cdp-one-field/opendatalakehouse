@@ -37,7 +37,7 @@ CAST( CONCAT(CAST( `year` AS STRING) , '-',  CAST( `month` AS STRING)  ,  '-'
 
 6. Click `Create`
 
-## Lab 4: Create a dashboard
+## Lab 3: Create a dashboard
 
 In this lab, we will create a sample dashboard to visualize the reports for a business user.
 
