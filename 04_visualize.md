@@ -4,10 +4,10 @@
 
 ## Lab 1: Enable data visualization:
 
-1. On your CDP One console, click on
-2. Now, click on "Build a Data Science Project" to go to your Machine Learning workspace
-3. Now create a
-4. On the left pane, you will see a tab called
+1. On your CDP One console, click on `ANALYZE` filter
+2. Now, click on `Build a Data Science Project` to go to your Machine Learning workspace
+3. Now create a `New Project` and name it `Embedded-DataViz` . Leave the other fields as is and click `Create Project`
+4. On the left pane, you will see a tab called `Data` and then `Launch Data Application`.
 
 It will take a few minutes for the data application to launch.
 
