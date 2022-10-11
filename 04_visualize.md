@@ -15,35 +15,11 @@ It will take a few minutes for the data application to launch.
 
 ---
 
-## Lab 2: Create data connection and datasets to Visualize
-
-1. Collect information for connecting to the Data Warehouse
-    1. On the CDP One console, click on the `ALALYZE` filter
-    2. Now click on `Third Party Connections` -> `Connect to Impala`
-    3. Take a copy of the
-2. Continue from where we left Lab 1. Once the Data Application is up and running, click on `HOST` field & the `HTTP PATH` field
-3. Fill the form as follows:
-    1. `Connection type` as `CDW Impala`
-    2. `Connection Name` as `CDW`
-    3. Under the `Basic` tab,
-        1. Under `Hostname` enter the hostname you collected in the step above
-        2. Leave `Port` as the default value of `443`
-        3. Enter your CDP username and your password
-    4. Under the `Advanced` tab
-        1. Choose `Connection mode` as `HTTP`
-        2. Enter the `HTTP Path` information you collected above
-        3. Leave the default value of `Socket type` as `SSL` & `Authentication Mode` as `Plain`
-    5. Click `Test` and then `Connect`
-
-![Screen_Shot_2022-09-01_at_8-08-41_AM.png](image/Screen_Shot_2022-09-01_at_8-08-41_AM.png)
-
-![Screen_Shot_2022-09-01_at_8-08-34_AM.png](image/Screen_Shot_2022-09-01_at_8-08-34_AM.png)
-
-## Lab 3: Create a dataset
+## Lab 2: Create a dataset
 
 In this lab, we will create a dataset that contains a correlation across the various datasets we have ingested and prepare for creating visualizations.
 
-1. Once Connection is established using the instructions from Lab 2, click on the name of the connection under `All Connections`
+1. Once you create a project as described in `Lab 1`, click on the `Data` tab then on `All Connections` tab. You should see a connection containing the name `DWarehouse`. Click this.
 2. Now click `New Dataset`
 3. `Dataset title` as `airlines-master`
 4. `Data Source` as `From SQL`
