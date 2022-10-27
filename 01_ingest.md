@@ -47,6 +47,6 @@ In this step, you will continue from lab 1 to extract data from the source syste
 2. Now, right click on the processor group ```Step 1) Load from source DB to CDP One Landing zone Configuration```
 3. Click ```Start```
 
-![Screen_Shot_2022-09-19_at_9-23-27_PM.png](image/Screen_Shot_2022-09-19_at_9-23-27_PM.png)
+![Screen_Shot_2022-09-19_at_9-23-28_PM.png](image/Screen_Shot_2022-09-19_at_9-23-28_PM.png)
 
 In this section, we learnt how to extract data from a source system and land the data as files into the CDP Object Store.
