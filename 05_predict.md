@@ -20,7 +20,7 @@ Note the environment name as it will be used as one of the inputs while we creat
     1. `STORAGE_MODE` as external
     2. `SPARK_CONNECTION_NAME` with the Environment field we collected above.
     3. `DW_DATABASE` as `airlines`
-    4. `DW_TABLE` as `mlflights`
+    4. `DW_TABLE` as `flights`
     5. `USE_PREBUILT_MODEL` as `yes`
 3. Leave the rest of the fields to be default.
 4. Click Launch Project
