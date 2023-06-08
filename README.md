@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # CDP One - Data Lakehouse - Self Service Trial - Instructions
 
 CDP One is an all\-in\-one data lakehouse software\-as\-a\-service \(SaaS\) offering that enables fast and easy self\-service analytics and exploratory data science on any type of data. A simple yet powerful cloud service, CDP One has built\-in enterprise security and machine learning \(ML\) that requires zero cloud, security, or monitoring operations staff for lower TCO and reduced risk.
